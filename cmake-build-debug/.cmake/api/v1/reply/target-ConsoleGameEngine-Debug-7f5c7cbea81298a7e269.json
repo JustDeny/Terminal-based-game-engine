@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-pthread -g"
+					"fragment" : "-pthread -lncursesw -g"
 				},
 				{
 					"fragment" : "-std=gnu++17"
@@ -70,7 +70,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-pthread -g",
+				"fragment" : "-pthread -lncursesw -g",
 				"role" : "flags"
 			},
 			{
@@ -78,12 +78,8 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-lcurses",
-				"role" : "libraries"
-			},
-			{
 				"backtrace" : 2,
-				"fragment" : "/usr/lib/x86_64-linux-gnu/libform.so",
+				"fragment" : "-lncursesw",
 				"role" : "libraries"
 			}
 		],

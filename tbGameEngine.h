@@ -16,10 +16,11 @@ enum TYPE_SHAPE: wchar_t
 
 struct CHAR_INFO
 {
-    union{
-        char16_t unicodeChar;
+/*    union{
+        wchar_t unicodeChar;
         char asciiChar;
-    }Char;
+    }Char;*/
+    cchar_t Char;
     struct
     {
         short foreground;
@@ -36,9 +37,10 @@ public:
     ~tbGameEngine();
     void Start();
     void Clip(int &x, int &y);
-    void Fill(int x1, int y1, int x2, int y2, char16_t ch, short frg_col,short bcg_col);
-    void PlotSingleChar(int x, int y, char16_t ch,short frg_col,short bcg_col);
-    void PlotLine(int x1, int y1, int x2, int y2,char16_t ch, short frg_col,short bcg_col);
+    void Fill(int x1, int y1, int x2, int y2, wchar_t ch, short frg_col,short bcg_col);
+    void PlotSingleChar(int x, int y, wchar_t ch,short frg_col,short bcg_col);
+    void PlotLine(int x1, int y1, int x2, int y2,wchar_t ch, short frg_col,short bcg_col);
+    void PlotCircle();
     void OutputToTerminal();
     virtual bool OnUserCreate() = 0;
     virtual bool OnUserUpdate(float elapsedTime) = 0;
@@ -46,9 +48,10 @@ private:
     void ThreadFunc();
     int m_screenWidth;
     int m_screenHeight;
-    CHAR_INFO *screen_buffer;
+    CHAR_INFO *m_screenBuf;
     std::mutex mutex;
     float m_elapsedTime;
+    bool m_performing;
 };
 
 
